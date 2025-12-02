@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//test aja
 use App\Models\Pemasukan;
 use Illuminate\Http\Request;
 
