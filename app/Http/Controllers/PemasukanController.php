@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-//test aja
+
 use App\Models\Pemasukan;
 use Illuminate\Http\Request;
 
@@ -23,7 +23,7 @@ class PemasukanController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'nominal' => 'required|numeric',
+            'nominal' => 'required',
             'tanggal' => 'required|date',
         ]);
 

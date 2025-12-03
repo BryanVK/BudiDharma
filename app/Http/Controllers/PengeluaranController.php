@@ -21,7 +21,7 @@ class PengeluaranController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'nominal' => 'required|numeric',
+            'nominal' => 'required',
             'tanggal' => 'required|date',
         ]);
 
@@ -30,12 +30,11 @@ class PengeluaranController extends Controller
             $file = time().'_'.$request->bukti_pengeluaran->getClientOriginalName();
             $request->bukti_pengeluaran->storeAs('bukti_pengeluaran', $file, 'public');
         }
-
+        $nominal = preg_replace('/[^0-9]/', '', $request->nominal);
         Pengeluaran::create([
-            'no_pengeluaran' => $request->no_pengeluaran,
             'nama_pemohon' => $request->nama_pemohon,
             'keperluan' => $request->keperluan,
-            'nominal' => $request->nominal,
+            'nominal' => $nominal,
             'bukti_pengeluaran' => $file,
             'pencatat_dana' => $request->pencatat_dana,
             'tanggal' => $request->tanggal,
@@ -63,11 +62,12 @@ class PengeluaranController extends Controller
             $request->bukti_pengeluaran->storeAs('bukti_pengeluaran', $file, 'public');
         }
 
+        $nominal = preg_replace('/[^0-9]/', '', $request->nominal);
+
         $data->update([
-            'no_pengeluaran' => $request->no_pengeluaran,
             'nama_pemohon' => $request->nama_pemohon,
             'keperluan' => $request->keperluan,
-            'nominal' => $request->nominal,
+            'nominal' => $nominal,
             'bukti_pengeluaran' => $file,
             'pencatat_dana' => $request->pencatat_dana,
             'tanggal' => $request->tanggal,

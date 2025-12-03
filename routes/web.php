@@ -5,14 +5,6 @@ use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
-    return view('layouts.app');
-});
-
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-});
-
-Route::get('/', function () {
     return view('pages.dashboard'); 
 });
 
@@ -25,3 +17,6 @@ Route::post('/pemasukan', [PemasukanController::class, 'store'])->name('pemasuka
 Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
 Route::get('/pengeluaran/create', [PengeluaranController::class, 'create'])->name('pengeluaran.create');
 Route::post('/pengeluaran', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
+
+
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');

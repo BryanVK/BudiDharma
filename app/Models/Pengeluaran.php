@@ -11,7 +11,6 @@ class Pengeluaran extends Model
     protected $primaryKey = 'pengeluaran_id';
 
     protected $fillable = [
-        'no_pengeluaran',
         'nama_pemohon',
         'keperluan',
         'nominal',

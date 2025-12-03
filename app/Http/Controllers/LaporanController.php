@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Pemasukan;
 use App\Models\Pengeluaran;
 
 class LaporanController extends Controller
 {
-    public function index() {
-        $pemasukan = Pemasukan::all();
-        $pengeluaran = Pengeluaran::all();
+    public function index()
+    {
+        $pemasukan = Pemasukan::orderBy('tanggal', 'desc')->get();
+        $pengeluaran = Pengeluaran::orderBy('tanggal', 'desc')->get();
 
-        return view('laporan.index', compact('pemasukan', 'pengeluaran'));
+        return view('pages.laporan', compact('pemasukan', 'pengeluaran'));
     }
 }

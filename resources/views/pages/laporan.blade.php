@@ -6,13 +6,13 @@
 
     <ul class="nav nav-tabs mb-3" id="laporanTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="pemasukan-tab" data-toggle="tab" href="#pemasukan" role="tab" aria-controls="pemasukan" aria-selected="true">Pemasukan</a>
+            <a class="nav-link" id="pemasukan-tab" data-bs-toggle="tab" data-bs-target="#pemasukan" role="tab" aria-controls="pemasukan" aria-selected="false">Pemasukan</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" id="pengeluaran-tab" data-toggle="tab" href="#pengeluaran" role="tab" aria-controls="pengeluaran" aria-selected="false">Pengeluaran</a>
+            <a class="nav-link" id="pengeluaran-tab" data-bs-toggle="tab" data-bs-target="#pengeluaran" role="tab" aria-controls="pengeluaran" aria-selected="false">Pengeluaran</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" id="total-tab" data-toggle="tab" href="#total" role="tab" aria-controls="total" aria-selected="false">Total Dana</a>
+            <a class="nav-link" id="total-tab" data-bs-toggle="tab" data-bs-target="#total" role="tab" aria-controls="total" aria-selected="false">Total</a>
         </li>
     </ul>
 
@@ -22,7 +22,6 @@
                 <table class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th>No Donatur</th>
                             <th>Tanggal</th>
                             <th>Nama Donatur</th>
                             <th>No Telp</th>
@@ -37,7 +36,6 @@
                     <tbody>
                         @foreach($pemasukan as $d)
                         <tr>
-                            <td>{{ $d['no_donatur'] }}</td>
                             <td>{{ $d['tanggal'] }}</td>
                             <td>{{ $d['nama_donatur'] }}</td>
                             <td>{{ $d['no_telp'] }}</td>
@@ -66,7 +64,6 @@
                 <table class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th>No Pengeluaran</th>
                             <th>Tanggal</th>
                             <th>Nama Pemohon</th>
                             <th>No Telp</th>
@@ -80,7 +77,6 @@
                     <tbody>
                         @foreach($pengeluaran as $p)
                         <tr>
-                            <td>{{ $p['no_pengeluaran'] }}</td>
                             <td>{{ $p['tanggal'] }}</td>
                             <td>{{ $p['nama_pemohon'] }}</td>
                             <td>{{ $p['no_telp'] }}</td>

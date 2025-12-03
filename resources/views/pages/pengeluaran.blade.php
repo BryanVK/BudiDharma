@@ -14,10 +14,6 @@
             <!-- Kiri -->
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="no_pengeluaran">No Pengeluaran</label>
-                    <input type="text" class="form-control" id="no_pengeluaran" name="no_pengeluaran" placeholder="Masukkan No Pengeluaran">
-                </div>
-                <div class="form-group">
                     <label for="nama_pemohon">Nama Pemohon</label>
                     <input type="text" class="form-control" id="nama_pemohon" name="nama_pemohon" placeholder="Masukkan Nama Pemohon">
                 </div>
