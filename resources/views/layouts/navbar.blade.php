@@ -1,10 +1,17 @@
+<style>
+.navbar btn-primary {
+    color: #dc3545;  /* merah */
+}
+</style>
+
+
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
 
-    <!-- Topbar Search -->
+    <!-- Topbar Search
     <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
@@ -16,7 +23,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> -->
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
@@ -36,8 +43,8 @@
                             placeholder="Search for..." aria-label="Search"
                             aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
+                            <button class="btn btn-danger" type="button">
+                                <i class="fas fa-search fa-sm text-danger"></i>
                             </button>
                         </div>
                     </div>

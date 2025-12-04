@@ -1,3 +1,10 @@
+<style>
+    .sidebar.bg-gradient-primary {
+    background-color: #dc3545 !important;        /* merah utama */
+    background-image: linear-gradient(180deg, #dc3545 10%, #b52a37 100%) !important;
+}
+</style>
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -6,16 +13,6 @@
         </div>
         <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
     </a>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -62,7 +59,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Addons
+        Data
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -88,9 +85,14 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger rounded-circle" title="Logout">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
+    </form>
+</div>
+
 
 </ul>

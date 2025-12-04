@@ -45,7 +45,7 @@
                 </div>
 
                 <!-- Button Simpan -->
-                <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                <button type="submit" class="btn btn-danger mt-3">Simpan</button>
             </div>
 
             <!-- Kanan -->

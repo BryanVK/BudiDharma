@@ -26,10 +26,11 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
-        @include('layouts.sidebar')
-        <!-- End of Sidebar -->
+        {{-- Sidebar hanya tampil jika bukan halaman login/register --}}
+        @if (!Request::is('login') && !Request::is('register'))
+            @include('layouts.sidebar')
+        @endif
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -38,7 +39,9 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('layouts.navbar')
+                @if (!Request::is('login') && !Request::is('register'))
+                    @include('layouts.navbar')
+                @endif
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -87,7 +90,11 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
