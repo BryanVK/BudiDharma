@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('pencatat_dana', 100)->nullable();
             $table->date('tanggal')->nullable();
             $table->string('no_telp', 30)->nullable();
-            $table->string('bentuk_pengeluaran', 50)->nullable();
+            $table->string('bentuk_pengeluaran')->nullable();
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

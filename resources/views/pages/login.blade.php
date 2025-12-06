@@ -3,57 +3,109 @@
 @section('content')
 
 <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* hilangkan scroll horizontal */
+    }
+
+    /* Background fullscreen */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('{{ asset('images/bg-login.png') }}');
+        background-size: cover; /* cover seluruh layar */
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1; /* supaya navbar dan card di atas */
+    }
+    /* Navbar full screen */
+    .navbar-login {
+        width: 100vw; /* full viewport width */
+        background-color: #dc3545;
+        color: #fff;
+        padding: 1rem 2rem;
+        font-weight: bold;
+        font-size: 1.25rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        position: fixed; /* agar selalu di atas */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    /* Wrapper login fullscreen */
     .login-wrapper {
-        min-height: 100vh;
+        width: 100vw;
+        height: calc(100vh - 68px); /* dikurangi tinggi navbar */
         display: flex;
         justify-content: center;
         align-items: center;
-
         background-image: url('{{ asset('images/bg-login.png') }}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Card login */
+    .card-login {
+        width: 100%;
+        max-width: 400px; 
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        margin: 0 1rem; /* beri sedikit margin mobile */
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    /* Hapus footer default */
+    footer {
+        display: none !important;
     }
 </style>
 
+<!-- Navbar -->
+<div class="navbar-login">
+    Vihara Budi Dharma Management System
+</div>
 
+<!-- Login Form -->
 <div class="login-wrapper">
+    <div class="card card-login o-hidden border-0 shadow-lg">
+        <div class="card-body">
 
-    <div class="col-xl-4 col-lg-5 col-md-6">
+            <h4 class="text-center mb-4">Login</h4>
 
-        <div class="card o-hidden border-0 shadow-lg">
-            <div class="card-body p-5">
+            <form action="{{ url('/login') }}" method="POST">
+                @csrf
 
-                <h4 class="text-center mb-4">Login</h4>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                    @error('email') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
 
-                <form action="{{ url('/login') }}" method="POST">
-                    @csrf
+                <div class="form-group mt-3">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
 
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                        @error('email') <small class="text-danger">{{ $message }}</small> @enderror
-                    </div>
+                <button class="btn btn-danger w-100 mt-4">Login</button>  
 
-                    <div class="form-group mt-3">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" required>
-                    </div>
+            </form>
 
-                    <button class="btn btn-danger w-100 mt-4">Login</button>  
-
-                    <hr>
-
-                    <div class="text-center">
-                        <a href="{{ route('register') }}">Create an Account!</a>
-                    </div>
-                </form>
-
-            </div>
         </div>
-
     </div>
-
 </div>
 
 @endsection

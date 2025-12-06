@@ -26,16 +26,19 @@ class PengeluaranController extends Controller
         ]);
 
         $file = null;
-        if ($request->hasFile('bukti_pengeluaran')) {
-            $file = time().'_'.$request->bukti_pengeluaran->getClientOriginalName();
-            $request->bukti_pengeluaran->storeAs('bukti_pengeluaran', $file, 'public');
+
+        $file = null;
+        if ($request->hasFile('bukti_bayar')) {
+            $file = $request->file('bukti_bayar')->store('bukti_pengeluaran', 'public');
         }
+        
         $nominal = preg_replace('/[^0-9]/', '', $request->nominal);
+
         Pengeluaran::create([
             'nama_pemohon' => $request->nama_pemohon,
             'keperluan' => $request->keperluan,
             'nominal' => $nominal,
-            'bukti_pengeluaran' => $file,
+            'bukti_bayar' => $file, // <--- ganti di sini
             'pencatat_dana' => $request->pencatat_dana,
             'tanggal' => $request->tanggal,
             'no_telp' => $request->no_telp,
@@ -56,10 +59,11 @@ class PengeluaranController extends Controller
     {
         $data = Pengeluaran::findOrFail($id);
 
-        $file = $data->bukti_pengeluaran;
-        if ($request->hasFile('bukti_pengeluaran')) {
-            $file = time().'_'.$request->bukti_pengeluaran->getClientOriginalName();
-            $request->bukti_pengeluaran->storeAs('bukti_pengeluaran', $file, 'public');
+        $file = $data->bukti_bayar;
+        if ($request->hasFile('bukti')) {
+            $file = time().'_'.$request->bukti_bayar->getClientOriginalName();
+            $request->bukti_bayar->storeAs('bukti_pengeluaran', $file, 'public');
+            $filepath = 'bukti_pengeluaran/'.$file;
         }
 
         $nominal = preg_replace('/[^0-9]/', '', $request->nominal);
@@ -68,7 +72,7 @@ class PengeluaranController extends Controller
             'nama_pemohon' => $request->nama_pemohon,
             'keperluan' => $request->keperluan,
             'nominal' => $nominal,
-            'bukti_pengeluaran' => $file,
+            'bukti_bayar' => $file,
             'pencatat_dana' => $request->pencatat_dana,
             'tanggal' => $request->tanggal,
             'no_telp' => $request->no_telp,

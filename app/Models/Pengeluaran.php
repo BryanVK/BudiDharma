@@ -14,11 +14,12 @@ class Pengeluaran extends Model
         'nama_pemohon',
         'keperluan',
         'nominal',
-        'bukti_pengeluaran',
+        'bukti_bayar',
         'pencatat_dana',
         'tanggal',
         'no_telp',
         'bentuk_pengeluaran',
         'keterangan',
     ];
+
 }

@@ -15,34 +15,20 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="nama_donatur">Nama Donatur</label>
-                    <input type="text" class="form-control" id="nama_donatur" name="nama_donatur" placeholder="Masukkan Nama Donatur">
+                    <input type="text" class="form-control" id="nama_donatur" name="nama_donatur" placeholder="Masukkan Nama Donatur" required>
                 </div>
                 <div class="form-group">
                     <label for="alamat_donatur">Alamat Donatur</label>
-                    <textarea class="form-control" id="alamat_donatur" name="alamat_donatur" rows="3" placeholder="Masukkan Alamat"></textarea>
+                    <textarea class="form-control" id="alamat_donatur" name="alamat_donatur" rows="3" placeholder="Masukkan Alamat" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="nominal">Nominal</label>
-                    <input type="text" class="form-control" id="nominal" name="nominal" placeholder="Masukkan Nominal">
+                    <input type="text" class="form-control" id="nominal" name="nominal" placeholder="Masukkan Nominal" required>
                 </div>
-
-                <script>
-                    const nominalInput = document.getElementById('nominal');
-
-                    nominalInput.addEventListener('input', function(e) {
-                        let value = this.value.replace(/\D/g, ''); // hilangkan semua selain angka
-                        if(value) {
-                            value = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(value);
-                            this.value = value;
-                        } else {
-                            this.value = '';
-                        }
-                    });
-                </script>
 
                 <div class="form-group">
                     <label for="bukti_bayar">Upload Bukti Bayar</label>
-                    <input type="file" class="form-control-file" id="bukti_bayar" name="bukti_bayar">
+                    <input type="file" name="bukti_bayar" class="form-control" required>
                 </div>
                 <!-- Button Simpan -->
                 <button type="submit" class="btn btn-danger mt-3">Simpan</button>
@@ -52,19 +38,20 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="pencatat_dana">Pencatat Dana</label>
-                    <input type="text" class="form-control" id="pencatat_dana" name="pencatat_dana" placeholder="Masukkan Pencatat Dana">
+                    <input type="text" class="form-control" id="pencatat_dana" name="pencatat_dana" 
+                        value="{{ Auth::user()->name }}" required>
                 </div>
                 <div class="form-group">
                     <label for="tanggal">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal">
+                    <input type="date" class="form-control" id="tanggal" name="tanggal" required>
                 </div>
                 <div class="form-group">
                     <label for="no_telp">No Telp</label>
-                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan No Telp">
+                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan No Telp" required>
                 </div>
                 <div class="form-group">
                     <label for="bentuk_dana">Bentuk Dana</label>
-                    <select class="form-control" id="bentuk_dana" name="bentuk_dana">
+                    <select class="form-control" id="bentuk_dana" name="bentuk_dana" required>
                         <option value="">Pilih Bentuk Dana</option>
                         <option value="tunai">Tunai</option>
                         <option value="transfer">Transfer</option>
@@ -72,11 +59,31 @@
                 </div>
                 <div class="form-group">
                     <label for="keterangan">Keterangan</label>
-                    <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Masukkan Keterangan"></textarea>
+                    <textarea class="form-control" id="keterangan" name="keterangan" rows="3" placeholder="Masukkan Keterangan" required></textarea>
                 </div>
             </div>
         </div>
     </form>
 
 </div>
+
+<script>
+    const nominalInput = document.getElementById('nominal');
+
+    nominalInput.addEventListener('input', function(e) {
+        let value = this.value.replace(/\D/g, ''); // hapus semua non-digit
+        if(value) {
+            this.value = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(value);
+        } else {
+            this.value = '';
+        }
+    });
+
+    // Strip "Rp" saat submit supaya backend dapat angka murni
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+        nominalInput.value = nominalInput.value.replace(/[^0-9]/g,''); 
+    });
+</script>
+
 @endsection

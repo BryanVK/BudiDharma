@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/pengeluaran', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
 
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/pemasukan/{id}/tanda-terima', [PemasukanController::class, 'generateTandaTerimaPdf'])->name('pemasukan.tandaTerimaPdf');
+
 
 });
 
